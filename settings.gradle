@@ -1,0 +1,2 @@
+rootProject.name = "AndroidActualCombat"
+include ':app'
