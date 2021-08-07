@@ -1,4 +1,5 @@
-package com.zak.aac
+package com.zak.aac.ui
+
 
 /**
  *
@@ -7,4 +8,6 @@ package com.zak.aac
  * @email linhenji@163.com / linhenji17@gmail.com
  */
 class MainActivity {
+
+
 }

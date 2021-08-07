@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidActualCombat</string>
+    <string name="app_name_debug">AndroidActualCombat</string>
 </resources>

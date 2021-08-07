@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -16,11 +19,20 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            manifestPlaceholders = [
+                    APP_NAME      : "@string/app_name_debug",
+            ]
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    APP_NAME      : "@string/app_name",
+            ]
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
@@ -29,15 +41,42 @@ android {
     }
     kotlinOptions {
         jvmTarget = Version.jvmTarget
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
     }
 }
 
 dependencies {
-
     implementation Kotlin.stdlib
     implementation AndroidX.coreKtx
     implementation AndroidX.appcompat
+    implementation AndroidX.pagingRuntime
+    implementation AndroidX.runtimeKtx
+    implementation AndroidX.appStartup
+    implementation AndroidX.constraintLayout
+    implementation AndroidX.recyclerView
+
     implementation Material.material
+
+    implementation Room.runtime
+    implementation Room.ktx
+    kapt Room.compiler
+
+    implementation Retrofit.runtime
+    implementation Retrofit.gson
+    implementation Retrofit.logging
+
+    implementation Hilt.daggerRuntime
+    kapt Hilt.daggerCompiler
+    implementation Hilt.viewModule
+    kapt Hilt.compiler
+
+    implementation ThirdDep.glide
+    implementation ThirdDep.timber
+
     testImplementation Junit.junit
     androidTestImplementation AndroidX.testExtJunit
     androidTestImplementation AndroidX.testEspressoCore
