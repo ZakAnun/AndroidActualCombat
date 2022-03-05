@@ -73,5 +73,5 @@ object Retrofit {
 
 object ThirdDep {
     const val glide = "com.github.bumptech.glide:glide:4.12.0"
-    const val timber = "com.jakewharton.timber:timber:4.7.1"
+    const val timber = "com.jakewharton.timber:timber:5.0.1"
 }
