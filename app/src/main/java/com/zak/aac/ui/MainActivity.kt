@@ -1,7 +1,6 @@
 package com.zak.aac.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import timber.log.Timber
 import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
@@ -40,19 +40,19 @@ class MainActivity: AppCompatActivity() {
         val okClient = OkHttpClient.Builder().eventListener(object : EventListener() {
 
             override fun callStart(call: okhttp3.Call) {
-                Log.d(TAG, "callStart: ")
+                Timber.d("callStart:")
             }
 
             override fun proxySelectStart(call: okhttp3.Call, url: HttpUrl) {
-                Log.d(TAG, "proxySelectStart: ")
+                Timber.d("proxySelectStart: ")
             }
 
             override fun proxySelectEnd(call: okhttp3.Call, url: HttpUrl, proxies: List<Proxy>) {
-                Log.d(TAG, "proxySelectEnd: ")
+                Timber.d("proxySelectEnd: ")
             }
 
             override fun dnsStart(call: okhttp3.Call, domainName: String) {
-                Log.d(TAG, "dnsStart: ")
+                Timber.d("dnsStart: ")
             }
 
             override fun dnsEnd(
@@ -60,7 +60,7 @@ class MainActivity: AppCompatActivity() {
                 domainName: String,
                 inetAddressList: List<InetAddress>
             ) {
-                Log.d(TAG, "dnsEnd: ")
+                Timber.d("dnsEnd: ")
             }
 
             override fun connectStart(
@@ -68,15 +68,15 @@ class MainActivity: AppCompatActivity() {
                 inetSocketAddress: InetSocketAddress,
                 proxy: Proxy
             ) {
-                Log.d(TAG, "connectStart: ")
+                Timber.d("connectStart: ")
             }
 
             override fun secureConnectStart(call: okhttp3.Call) {
-                Log.d(TAG, "secureConnectStart: ")
+                Timber.d("secureConnectStart: ")
             }
 
             override fun secureConnectEnd(call: okhttp3.Call, handshake: Handshake?) {
-                Log.d(TAG, "secureConnectEnd: ")
+                Timber.d("secureConnectEnd: ")
             }
 
             override fun connectEnd(
@@ -85,7 +85,7 @@ class MainActivity: AppCompatActivity() {
                 proxy: Proxy,
                 protocol: Protocol?
             ) {
-                Log.d(TAG, "connectEnd: ")
+                Timber.d("connectEnd: ")
             }
 
             override fun connectFailed(
@@ -95,79 +95,79 @@ class MainActivity: AppCompatActivity() {
                 protocol: Protocol?,
                 ioe: IOException
             ) {
-                Log.d(TAG, "connectFailed: ")
+                Timber.d("connectFailed: ")
             }
 
             override fun connectionAcquired(call: okhttp3.Call, connection: Connection) {
-                Log.d(TAG, "connectionAcquired: ")
+                Timber.d("connectionAcquired: ")
             }
 
             override fun connectionReleased(call: okhttp3.Call, connection: Connection) {
-                Log.d(TAG, "connectionReleased: ")
+                Timber.d("connectionReleased: ")
             }
 
             override fun requestHeadersStart(call: okhttp3.Call) {
-                Log.d(TAG, "requestHeadersStart: ")
+                Timber.d("requestHeadersStart: ")
             }
 
             override fun requestHeadersEnd(call: okhttp3.Call, request: Request) {
-                Log.d(TAG, "requestHeadersEnd: ")
+                Timber.d("requestHeadersEnd: ")
             }
 
             override fun requestBodyStart(call: okhttp3.Call) {
-                Log.d(TAG, "requestBodyStart: ")
+                Timber.d("requestBodyStart: ")
             }
 
             override fun requestBodyEnd(call: okhttp3.Call, byteCount: Long) {
-                Log.d(TAG, "requestBodyEnd: ")
+                Timber.d("requestBodyEnd: ")
             }
 
             override fun requestFailed(call: okhttp3.Call, ioe: IOException) {
-                Log.d(TAG, "requestFailed: ")
+                Timber.d("requestFailed: ")
             }
 
             override fun responseHeadersStart(call: okhttp3.Call) {
-                Log.d(TAG, "responseHeadersStart: ")
+                Timber.d("responseHeadersStart: ")
             }
 
             override fun responseHeadersEnd(call: okhttp3.Call, response: okhttp3.Response) {
-                Log.d(TAG, "responseHeadersEnd: ")
+                Timber.d("responseHeadersEnd: ")
             }
 
             override fun responseBodyStart(call: okhttp3.Call) {
-                Log.d(TAG, "responseBodyStart: ")
+                Timber.d("responseBodyStart: ")
             }
 
             override fun responseBodyEnd(call: okhttp3.Call, byteCount: Long) {
-                Log.d(TAG, "responseBodyEnd: ")
+                Timber.d("responseBodyEnd: ")
             }
 
             override fun responseFailed(call: okhttp3.Call, ioe: IOException) {
-                Log.d(TAG, "responseFailed: ")
+                Timber.d("responseFailed: ")
             }
 
             override fun callEnd(call: okhttp3.Call) {
-                Log.d(TAG, "callEnd: ")
+                Timber.d("callEnd: ")
             }
 
             override fun callFailed(call: okhttp3.Call, ioe: IOException) {
-                Log.d(TAG, "callFailed: ")
+                Timber.d("callFailed: ")
             }
 
             override fun satisfactionFailure(call: okhttp3.Call, response: okhttp3.Response) {
-                Log.d(TAG, "satisfactionFailure: ")
+                Timber.d("satisfactionFailure: ")
             }
 
             override fun cacheHit(call: okhttp3.Call, response: okhttp3.Response) {
-                Log.d(TAG, "cacheHit: ")
+                Timber.d("cacheHit: ")
             }
 
             override fun cacheMiss(call: okhttp3.Call) {
-                Log.d(TAG, "cacheMiss: ")
+                Timber.d("cacheMiss: ")
             }
 
             override fun cacheConditionalHit(call: okhttp3.Call, cachedResponse: okhttp3.Response) {
-                Log.d(TAG, "cacheConditionalHit: ")
+                Timber.d("cacheConditionalHit: ")
             }
 
 
@@ -186,12 +186,12 @@ class MainActivity: AppCompatActivity() {
             apiService.listRepos("ZakAnun")?.enqueue(object : Callback<Repo?> {
 
                 override fun onResponse(call: Call<Repo?>, response: Response<Repo?>) {
-                    Log.d(TAG, "onResponse: ok")
+                    Timber.d("onResponse: ok")
                     findViewById<TextView>(R.id.content).text = response.body()?.toString()
                 }
 
                 override fun onFailure(call: Call<Repo?>, t: Throwable) {
-                    Log.d(TAG, "onFailure: no ok")
+                    Timber.d("onFailure: no ok")
                 }
             })
         }
