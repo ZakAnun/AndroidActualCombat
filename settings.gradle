@@ -1,2 +1,3 @@
 rootProject.name = "AndroidActualCombat"
 include ':app'
+include ':asm-plugin'

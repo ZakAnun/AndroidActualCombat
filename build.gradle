@@ -3,14 +3,16 @@ buildscript {
     repositories {
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url uri('./asm-plugin/viewgroup-plugin') }
 
         google()
         mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${AacGradle.version}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${Hilt.pluginVersion}"
+        classpath 'com.zak.plugin:asm-plugin:0.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
