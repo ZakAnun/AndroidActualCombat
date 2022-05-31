@@ -41,6 +41,7 @@ object Junit {
 
 object AacGradle {
     const val version = "4.2.2"
+    const val ktVersion = "1.6.21"
 }
 
 object Hilt {
