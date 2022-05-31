@@ -12,7 +12,7 @@ object Version {
 }
 
 object Kotlin {
-    const val version = "1.5.21"
+    const val version = "1.6.21"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
 }
 
@@ -39,9 +39,14 @@ object Junit {
     const val junit = "junit:junit:4.13.2"
 }
 
+object Lint {
+    private const val version = "30.2.0"
+    const val lint = "com.android.tools.lint:lint:$version"
+    const val lintTest = "com.android.tools.lint:lint-tests:$version"
+}
+
 object AacGradle {
-    const val version = "4.2.2"
-    const val ktVersion = "1.6.21"
+    const val version = "7.2.1"
 }
 
 object Hilt {

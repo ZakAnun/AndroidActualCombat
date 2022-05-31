@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+//    id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
 //    id 'viewgroup-plugin'
 }
@@ -48,6 +48,14 @@ android {
         dataBinding true
         viewBinding true
     }
+    lintOptions {
+        htmlReport true
+        htmlOutput file("lint-report.html")
+        textReport true
+        absolutePaths false
+        ignoreTestSources true
+        checkDependencies true
+    }
 }
 
 dependencies {
@@ -70,15 +78,17 @@ dependencies {
     implementation Retrofit.gson
     implementation Retrofit.logging
 
-    implementation Hilt.daggerRuntime
-    kapt Hilt.daggerCompiler
-    implementation Hilt.viewModule
-    kapt Hilt.compiler
+//    implementation Hilt.daggerRuntime
+//    kapt Hilt.daggerCompiler
+//    implementation Hilt.viewModule
+//    kapt Hilt.compiler
 
     implementation ThirdDep.glide
     implementation ThirdDep.timber
 
     testImplementation Junit.junit
+    testImplementation Lint.lint
+    testImplementation Lint.lintTest
     androidTestImplementation AndroidX.testExtJunit
     androidTestImplementation AndroidX.testEspressoCore
 }
