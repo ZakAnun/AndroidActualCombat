@@ -47,13 +47,31 @@ class AacCheckUnitTest {
     fun testDependencyNormal() {
         lint().projects(
             ProjectDescription().apply {
-                name = "OneProject"
+                name = "RootProject"
                 dependsOn(ProjectDescription().apply {
-                    name = "OneProjectDependence"
+                    name = "OneProject"
+                    dependsOn(ProjectDescription().apply {
+                        name = "OneProjectDependence"
+                    })
+                    dependsOn(ProjectDescription().apply {
+                        name = "OneProjectDependenceBetter"
+                    })
                 })
-            },
-            ProjectDescription().apply {
-                name = "TwoProject"
+                dependsOn(ProjectDescription().apply {
+                    name = "TwoProject"
+                })
+                dependsOn(ProjectDescription().apply {
+                    name = "ThreeProject"
+                    dependsOn(ProjectDescription().apply {
+                        name = "ThreeProjectDependence"
+                    })
+                })
+                dependsOn(ProjectDescription().apply {
+                    name = "FourProject"
+                    dependsOn(ProjectDescription().apply {
+                        name = "FourProjectDependence"
+                    })
+                })
             }
         )
             .issues(ProjectDependencyDetector.ISSUE)
