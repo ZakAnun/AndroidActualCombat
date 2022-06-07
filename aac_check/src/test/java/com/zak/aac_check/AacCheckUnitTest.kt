@@ -82,4 +82,54 @@ class AacCheckUnitTest {
                 """
             )
     }
+
+    @Test
+    fun testDependencyWithCommon() {
+        val commonProject = ProjectDescription().apply {
+            name = "CommonProject"
+        }
+        lint().projects(
+            ProjectDescription().apply {
+                name = "RootProject"
+                dependsOn(ProjectDescription().apply {
+                    name = "OneProject"
+                    dependsOn(ProjectDescription().apply {
+                        name = "OneProjectDependence"
+                        dependsOn(commonProject)
+                    })
+                    dependsOn(ProjectDescription().apply {
+                        name = "OneProjectDependenceBetter"
+                        dependsOn(commonProject)
+                    })
+                    dependsOn(commonProject)
+                })
+                dependsOn(ProjectDescription().apply {
+                    name = "TwoProject"
+                    dependsOn(commonProject)
+                })
+                dependsOn(ProjectDescription().apply {
+                    name = "ThreeProject"
+                    dependsOn(ProjectDescription().apply {
+                        name = "ThreeProjectDependence"
+                        dependsOn(commonProject)
+                    })
+                    dependsOn(commonProject)
+                })
+                dependsOn(ProjectDescription().apply {
+                    name = "FourProject"
+                    dependsOn(ProjectDescription().apply {
+                        name = "FourProjectDependence"
+                        dependsOn(commonProject)
+                    })
+                })
+            }
+        )
+            .issues(ProjectDependencyDetector.ISSUE)
+            .run()
+            .expect(
+                """
+                    No warnings.
+                """
+            )
+    }
 }

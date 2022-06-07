@@ -14,6 +14,7 @@ import org.jetbrains.uast.ULiteralExpression
 class ProjectDependencyDetector: Detector(), Detector.UastScanner {
 
     private val nodeMap = HashMap<String, ElementNode>()
+    // 允许配置
     private val specificRootNode = "RootProject"
 
     companion object {
@@ -103,6 +104,7 @@ class ProjectDependencyDetector: Detector(), Detector.UastScanner {
      * 生成结果
      */
     private fun generateResult() {
+        // 允许配置
         for (elementNode: ElementNode in nodeMap.values) {
             removeUnnecessaryDependency(elementNode = elementNode)
         }
