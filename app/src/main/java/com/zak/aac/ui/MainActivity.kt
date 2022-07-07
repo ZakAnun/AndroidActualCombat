@@ -195,6 +195,8 @@ class MainActivity: AppCompatActivity() {
                 }
             })
         }
+
+        print("Hello World")
     }
 
 }
