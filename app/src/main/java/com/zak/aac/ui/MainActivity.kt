@@ -196,7 +196,7 @@ class MainActivity: AppCompatActivity() {
             })
         }
 
-        print("Hello World")
+        Timber.d("Hello World")
     }
 
 }
