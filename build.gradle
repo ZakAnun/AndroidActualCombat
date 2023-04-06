@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:${AacGradle.version}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${Hilt.pluginVersion}"
 //        classpath 'com.zak.plugin:asm-plugin:0.0.1'
 

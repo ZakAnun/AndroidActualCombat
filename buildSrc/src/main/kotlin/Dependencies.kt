@@ -12,7 +12,7 @@ object Version {
 }
 
 object Kotlin {
-    const val version = "1.6.21"
+    const val version = "1.7.22"
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
 }
 
@@ -46,7 +46,7 @@ object Lint {
 }
 
 object AacGradle {
-    const val version = "7.2.1"
+    const val version = "7.4.2"
 }
 
 object Hilt {
